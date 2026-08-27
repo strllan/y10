@@ -35,6 +35,22 @@ function getCodeFromUrl() {
   return window.location.hash.replace("#", "").trim();
 }
 
+function updateHashFromCode() {
+  const code = codeInput.value.replace(/\D/g, "").slice(0, 5);
+  codeInput.value = code;
+
+  if (code) {
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${code}`);
+  } else {
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+  }
+}
+
+function fillCodeFromUrl() {
+  const code = getCodeFromUrl().replace(/\D/g, "").slice(0, 5);
+  codeInput.value = code;
+}
+
 function showSurvey() {
   codeGate.hidden = true;
   surveyView.hidden = false;
@@ -68,6 +84,17 @@ redoButton.addEventListener("click", () => {
   updateProgress();
 });
 
+codeInput.addEventListener("input", () => {
+  codeError.textContent = "";
+  updateHashFromCode();
+});
+
+window.addEventListener("hashchange", () => {
+  if (!codeGate.hidden) {
+    fillCodeFromUrl();
+  }
+});
+
 codeForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -83,10 +110,6 @@ codeForm.addEventListener("submit", (event) => {
   showSurvey();
 });
 
-if (codePattern.test(getCodeFromUrl())) {
-  showSurvey();
-} else {
-  showCodeGate();
-}
-
 cleanIndexUrl();
+fillCodeFromUrl();
+showCodeGate();
