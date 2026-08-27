@@ -3,7 +3,7 @@
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: #f6f3ee;
+  background: #fff4f8;
   color: #221f1f;
 }
 
@@ -15,8 +15,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(246, 243, 238, 0.2)),
-    #f6f3ee;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 214, 230, 0.22)),
+    #fff4f8;
 }
 
 .page {
