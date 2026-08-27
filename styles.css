@@ -59,7 +59,7 @@ body {
 .actions {
   position: fixed;
   right: 28px;
-  bottom: 28px;
+  bottom: 56px;
   display: grid;
   gap: 12px;
   width: 128px;
@@ -99,6 +99,15 @@ body {
   color: #221f1f;
 }
 
+.version-footer {
+  position: fixed;
+  right: 28px;
+  bottom: 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(34, 31, 31, 0.7);
+}
+
 @media (max-width: 520px) {
   .page {
     padding-top: 32px;
@@ -111,7 +120,12 @@ body {
 
   .actions {
     right: 18px;
-    bottom: 18px;
+    bottom: 48px;
     width: 116px;
+  }
+
+  .version-footer {
+    right: 18px;
+    bottom: 14px;
   }
 }
