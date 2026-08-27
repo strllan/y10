@@ -1,4 +1,4 @@
-const totalQuestions = 23;
+const totalQuestions = 10;
 let currentQuestion = 0;
 
 const progressFill = document.querySelector("#progress-fill");
@@ -7,7 +7,7 @@ const nextButton = document.querySelector("#next-button");
 const redoButton = document.querySelector("#redo-button");
 
 function getLogarithmicProgress() {
-  const curveStrength = 0.35;
+  const curveStrength = 0.523259;
   const currentValue = Math.log1p(currentQuestion * curveStrength);
   const maxValue = Math.log1p(totalQuestions * curveStrength);
 
