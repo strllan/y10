@@ -6,8 +6,16 @@ const progressCount = document.querySelector("#progress-count");
 const nextButton = document.querySelector("#next-button");
 const redoButton = document.querySelector("#redo-button");
 
+function getLogarithmicProgress() {
+  const curveStrength = 0.7;
+  const currentValue = Math.log1p(currentQuestion * curveStrength);
+  const maxValue = Math.log1p(totalQuestions * curveStrength);
+
+  return (currentValue / maxValue) * 100;
+}
+
 function updateProgress() {
-  const percentage = (currentQuestion / totalQuestions) * 100;
+  const percentage = getLogarithmicProgress();
 
   progressFill.style.width = `${percentage}%`;
   progressCount.textContent = `${currentQuestion} / ${totalQuestions}`;
