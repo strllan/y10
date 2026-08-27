@@ -5,8 +5,10 @@ let currentQuestion = 0;
 
 const codeGate = document.querySelector("#code-gate");
 const codeForm = document.querySelector("#code-form");
+const codeEntry = document.querySelector("#code-entry");
 const codeInput = document.querySelector("#code-input");
 const codeError = document.querySelector("#code-error");
+const codeSlots = document.querySelectorAll(".code-slot");
 const surveyView = document.querySelector("#survey-view");
 const progressTrack = document.querySelector(".progress-track");
 const progressFill = document.querySelector("#progress-fill");
@@ -35,9 +37,22 @@ function getCodeFromUrl() {
   return window.location.hash.replace("#", "").trim();
 }
 
+function getCleanCode(value) {
+  return value.replace(/\D/g, "").slice(0, 5);
+}
+
+function renderCodeSlots() {
+  const code = codeInput.value;
+
+  codeSlots.forEach((slot, index) => {
+    slot.textContent = code[index] || "_";
+  });
+}
+
 function updateHashFromCode() {
-  const code = codeInput.value.replace(/\D/g, "").slice(0, 5);
+  const code = getCleanCode(codeInput.value);
   codeInput.value = code;
+  renderCodeSlots();
 
   if (code) {
     window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${code}`);
@@ -47,8 +62,9 @@ function updateHashFromCode() {
 }
 
 function fillCodeFromUrl() {
-  const code = getCodeFromUrl().replace(/\D/g, "").slice(0, 5);
+  const code = getCleanCode(getCodeFromUrl());
   codeInput.value = code;
+  renderCodeSlots();
 }
 
 function showSurvey() {
@@ -87,12 +103,20 @@ redoButton.addEventListener("click", () => {
 codeInput.addEventListener("input", () => {
   codeError.textContent = "";
   updateHashFromCode();
+
+  if (codePattern.test(codeInput.value)) {
+    showSurvey();
+  }
 });
 
 window.addEventListener("hashchange", () => {
   if (!codeGate.hidden) {
     fillCodeFromUrl();
   }
+});
+
+codeEntry.addEventListener("click", () => {
+  codeInput.focus();
 });
 
 codeForm.addEventListener("submit", (event) => {

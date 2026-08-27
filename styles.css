@@ -50,33 +50,43 @@ body {
   gap: 10px;
 }
 
-.code-label {
-  font-size: 15px;
-  font-weight: 800;
+.code-entry {
+  position: relative;
+  cursor: text;
 }
 
-.code-entry {
-  display: grid;
-  grid-template-columns: 1fr 118px;
-  gap: 10px;
+.code-slots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.code-slot {
+  min-width: 38px;
+  color: #221f1f;
+  font-size: clamp(38px, 8vw, 58px);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.code-entry:focus-within .code-slot {
+  color: #8f274f;
+  transform: translateY(-1px);
 }
 
 .code-input {
-  min-height: 46px;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  border: 2px solid #211f1f;
-  border-radius: 6px;
-  background: #ffffff;
-  color: #221f1f;
-  font: inherit;
-  font-size: 18px;
-  font-weight: 800;
-  padding: 0 14px;
-}
-
-.code-input:focus {
-  outline: 3px solid rgba(245, 166, 214, 0.55);
-  outline-offset: 2px;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  cursor: text;
 }
 
 .code-error {
@@ -194,8 +204,12 @@ body {
     padding-top: 32px;
   }
 
-  .code-entry {
-    grid-template-columns: 1fr;
+  .code-slots {
+    gap: 10px;
+  }
+
+  .code-slot {
+    min-width: 28px;
   }
 
   .progress-track {
