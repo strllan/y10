@@ -1,4 +1,4 @@
-const totalQuestions = 10;
+const totalQuestions = 23;
 let currentQuestion = 0;
 
 const progressFill = document.querySelector("#progress-fill");
