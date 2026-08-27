@@ -15,9 +15,9 @@ function getLogarithmicProgress() {
 }
 
 function updateProgress() {
-  const percentage = getLogarithmicProgress();
+  const progress = getLogarithmicProgress() / 100;
 
-  progressFill.style.width = `${percentage}%`;
+  progressFill.style.transform = `scaleX(${progress})`;
   progressCount.textContent = `${currentQuestion} / ${totalQuestions}`;
 }
 
