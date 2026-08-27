@@ -14,6 +14,15 @@ const progressCount = document.querySelector("#progress-count");
 const nextButton = document.querySelector("#next-button");
 const redoButton = document.querySelector("#redo-button");
 
+function cleanIndexUrl() {
+  const isWebPage = window.location.protocol === "http:" || window.location.protocol === "https:";
+
+  if (isWebPage && window.location.pathname.endsWith("/index.html")) {
+    const cleanPath = window.location.pathname.replace(/index\.html$/, "");
+    window.history.replaceState(null, "", `${cleanPath}${window.location.search}${window.location.hash}`);
+  }
+}
+
 function getLogarithmicProgress() {
   const curveStrength = 0.188705;
   const currentValue = Math.log1p(currentQuestion * curveStrength);
@@ -79,3 +88,5 @@ if (codePattern.test(getCodeFromUrl())) {
 } else {
   showCodeGate();
 }
+
+cleanIndexUrl();
