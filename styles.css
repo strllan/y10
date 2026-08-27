@@ -34,7 +34,7 @@ body {
 
 .progress-track {
   width: min(760px, 82vw);
-  height: 22px;
+  height: 18px;
   overflow: hidden;
   border-radius: 999px;
   background: #ffffff;
@@ -117,7 +117,7 @@ body {
 
   .progress-track {
     width: min(100%, 360px);
-    height: 18px;
+    height: 14px;
   }
 
   .actions {
