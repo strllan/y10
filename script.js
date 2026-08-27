@@ -1,7 +1,13 @@
 const totalQuestions = 10;
 const initialProgress = 8;
+const codePattern = /^\d{5}$/;
 let currentQuestion = 0;
 
+const codeGate = document.querySelector("#code-gate");
+const codeForm = document.querySelector("#code-form");
+const codeInput = document.querySelector("#code-input");
+const codeError = document.querySelector("#code-error");
+const surveyView = document.querySelector("#survey-view");
 const progressTrack = document.querySelector(".progress-track");
 const progressFill = document.querySelector("#progress-fill");
 const progressCount = document.querySelector("#progress-count");
@@ -14,6 +20,23 @@ function getLogarithmicProgress() {
   const maxValue = Math.log1p(totalQuestions * curveStrength);
 
   return initialProgress + (currentValue / maxValue) * (100 - initialProgress);
+}
+
+function getCodeFromUrl() {
+  return window.location.hash.replace("#", "").trim();
+}
+
+function showSurvey() {
+  codeGate.hidden = true;
+  surveyView.hidden = false;
+  currentQuestion = 0;
+  updateProgress();
+}
+
+function showCodeGate() {
+  codeGate.hidden = false;
+  surveyView.hidden = true;
+  codeInput.focus();
 }
 
 function updateProgress() {
@@ -36,4 +59,23 @@ redoButton.addEventListener("click", () => {
   updateProgress();
 });
 
-updateProgress();
+codeForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const code = codeInput.value.trim();
+
+  if (!codePattern.test(code)) {
+    codeError.textContent = "Use any 5 digits for now.";
+    return;
+  }
+
+  codeError.textContent = "";
+  window.location.hash = code;
+  showSurvey();
+});
+
+if (codePattern.test(getCodeFromUrl())) {
+  showSurvey();
+} else {
+  showCodeGate();
+}

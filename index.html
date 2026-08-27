@@ -4,26 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Compatibility Test</title>
-    <link rel="stylesheet" href="styles.css?v=1.16" />
+    <link rel="stylesheet" href="styles.css?v=1.17" />
   </head>
   <body>
     <main class="page">
-      <section class="progress-area" aria-label="Test progress">
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-          <div class="progress-cap" aria-hidden="true"></div>
+      <section class="code-gate" id="code-gate" aria-labelledby="code-title">
+        <div class="code-panel">
+          <h1 id="code-title">Compatibility Test</h1>
+          <form class="code-form" id="code-form" novalidate>
+            <label class="code-label" for="code-input">Enter your 5 digit code</label>
+            <div class="code-entry">
+              <input
+                autocomplete="one-time-code"
+                class="code-input"
+                id="code-input"
+                inputmode="numeric"
+                maxlength="5"
+                pattern="[0-9]{5}"
+                type="text"
+              />
+              <button class="button primary" type="submit">Submit</button>
+            </div>
+            <p class="code-error" id="code-error" role="alert"></p>
+          </form>
         </div>
-        <p class="progress-count" id="progress-count">0 / 10</p>
       </section>
 
-      <div class="actions">
-        <button class="button secondary" id="redo-button" type="button">Redo</button>
-        <button class="button primary" id="next-button" type="button">Next</button>
+      <div class="survey-view" id="survey-view" hidden>
+        <section class="progress-area" aria-label="Test progress">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+            <div class="progress-cap" aria-hidden="true"></div>
+          </div>
+          <p class="progress-count" id="progress-count">0 / 10</p>
+        </section>
+
+        <div class="actions">
+          <button class="button secondary" id="redo-button" type="button">Redo</button>
+          <button class="button primary" id="next-button" type="button">Next</button>
+        </div>
       </div>
 
-      <footer class="version-footer">v1.16</footer>
+      <footer class="version-footer">v1.17</footer>
     </main>
 
-    <script src="script.js?v=1.16"></script>
+    <script src="script.js?v=1.17"></script>
   </body>
 </html>

@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -23,6 +27,64 @@ body {
   position: relative;
   min-height: 100vh;
   padding: 48px 28px 36px;
+}
+
+.code-gate {
+  display: grid;
+  min-height: calc(100vh - 84px);
+  place-items: center;
+}
+
+.code-panel {
+  width: min(460px, 100%);
+}
+
+.code-panel h1 {
+  margin: 0 0 22px;
+  font-size: clamp(34px, 7vw, 56px);
+  line-height: 1;
+}
+
+.code-form {
+  display: grid;
+  gap: 10px;
+}
+
+.code-label {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.code-entry {
+  display: grid;
+  grid-template-columns: 1fr 118px;
+  gap: 10px;
+}
+
+.code-input {
+  min-height: 46px;
+  width: 100%;
+  border: 2px solid #211f1f;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #221f1f;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 0 14px;
+}
+
+.code-input:focus {
+  outline: 3px solid rgba(245, 166, 214, 0.55);
+  outline-offset: 2px;
+}
+
+.code-error {
+  min-height: 20px;
+  margin: 0;
+  color: #8f274f;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .progress-area {
@@ -130,6 +192,10 @@ body {
 @media (max-width: 520px) {
   .page {
     padding-top: 32px;
+  }
+
+  .code-entry {
+    grid-template-columns: 1fr;
   }
 
   .progress-track {
